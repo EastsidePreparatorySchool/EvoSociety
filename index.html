@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolution of Society — A Course Adoption Kit</title>
+<meta name="description" content="A ready-to-adapt humanities course on technology, economics, and the future — co-developed by Jonathan Briggs and Matt Delaney at Eastside Preparatory School.">
+<meta name="robots" content="noindex">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{
+  --ink:#0a0e1a;--ink-2:#11172a;--panel:#161d33;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.22);
+  --text:#e9ecf5;--muted:#a7b0c8;--muted-2:#7c87a3;--violet:#7c5cff;--blue:#2bb7ff;--cyan:#39e0c6;--orange:#ff8a3d;--pink:#ff5d8f;
+  --grad:linear-gradient(110deg,#7c5cff 0%,#2bb7ff 55%,#39e0c6 100%);--grad-warm:linear-gradient(110deg,#ff5d8f,#ff8a3d);
+  --radius:18px;--radius-sm:12px;--maxw:1120px;--shadow:0 24px 60px -24px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--ink);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.1;letter-spacing:-.01em;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:700}
+h2{font-size:clamp(1.7rem,3.4vw,2.7rem);font-weight:700}
+h3{font-size:1.32rem;font-weight:600}
+h4{font-size:1.05rem;font-weight:600;letter-spacing:.02em}
+p{margin:0 0 1rem}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.narrow{max-width:840px}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,14,26,.82);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;height:64px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;color:var(--text);font-size:1.02rem}
+.brand:hover{text-decoration:none}
+.brand .dot{width:26px;height:26px;border-radius:8px;background:var(--grad);box-shadow:0 0 18px rgba(124,92,255,.6);flex:none}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:9px;transition:all .18s ease}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06);text-decoration:none}
+@media(max-width:820px){.nav-links{display:none}}
+.hero{position:relative;overflow:hidden;padding:92px 0 70px;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 12% 0%,rgba(124,92,255,.30),transparent 60%),radial-gradient(55% 70% at 92% 12%,rgba(43,183,255,.22),transparent 60%),radial-gradient(40% 60% at 70% 100%,rgba(57,224,198,.16),transparent 60%);z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line-strong);padding:7px 14px;border-radius:100px;margin-bottom:26px;background:rgba(255,255,255,.03)}
+.eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lede{font-size:clamp(1.05rem,1.8vw,1.32rem);color:var(--muted);max-width:700px;margin-top:6px}
+.btnrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-weight:600;font-size:1rem;padding:14px 24px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:all .18s ease}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--grad);color:#06101f;box-shadow:0 14px 36px -12px rgba(43,183,255,.65)}
+.btn-ghost{border-color:var(--line-strong);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{background:rgba(255,255,255,.07)}
+section.block{padding:72px 0;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Space Grotesk';font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.76rem;color:var(--violet);margin-bottom:14px}
+.section-lead{color:var(--muted);font-size:1.08rem;max-width:760px}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:880px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--panel),var(--ink-2));border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;transition:all .18s ease}
+.card:hover{border-color:var(--line-strong);transform:translateY(-3px);box-shadow:var(--shadow)}
+.card .num{font-family:'Space Grotesk';font-weight:700;font-size:.9rem;color:var(--muted-2)}
+.card h3{margin-top:8px}
+.card p{color:var(--muted);margin-bottom:0;font-size:.97rem}
+.card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;margin-bottom:18px;background:rgba(124,92,255,.14);border:1px solid var(--line)}
+.bar{height:4px;width:54px;border-radius:4px;background:var(--grad);margin-bottom:18px}
+.bar.warm{background:var(--grad-warm)}
+.mod{display:grid;grid-template-columns:120px 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,var(--panel),var(--ink-2))}
+.mod:hover{border-color:var(--line-strong)}
+.mod .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:22px;background:var(--grad);color:#06101f}
+.mod .tab .mn{font-family:'Space Grotesk';font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+.mod .tab .big{font-family:'Space Grotesk';font-weight:700;font-size:2.6rem;line-height:1}
+.mod .body{padding:24px 28px}
+.mod .body h3{margin-bottom:.3em}
+.mod .body p{color:var(--muted)}
+.mod ul{margin:.4rem 0 0;padding-left:1.1rem;color:var(--muted)}
+.mod ul li{margin-bottom:.3rem}
+@media(max-width:720px){.mod{grid-template-columns:1fr}.mod .tab{flex-direction:row;gap:14px;padding:16px}.mod .tab .big{font-size:1.6rem}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.chip{font-size:.86rem;font-weight:500;color:var(--text);border:1px solid var(--line-strong);border-radius:100px;padding:7px 15px;background:rgba(255,255,255,.03)}
+.feat{list-style:none;padding:0;margin:0}
+.feat li{position:relative;padding:14px 0 14px 38px;border-bottom:1px solid var(--line);color:var(--muted)}
+.feat li:last-child{border-bottom:0}
+.feat li::before{content:"";position:absolute;left:0;top:20px;width:18px;height:18px;border-radius:6px;background:var(--grad)}
+.feat li strong{color:var(--text);font-weight:600}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.steps>li{position:relative;padding:24px 26px 24px 84px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel),var(--ink-2))}
+.steps>li::before{counter-increment:s;content:counter(s);position:absolute;left:24px;top:24px;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;font-size:1.2rem;background:var(--grad);color:#06101f}
+.steps h3{margin:.1em 0 .3em}
+.steps p{color:var(--muted);margin-bottom:0}
+.callout{border:1px solid var(--line-strong);border-left:4px solid var(--violet);background:rgba(124,92,255,.07);padding:20px 24px;border-radius:12px;color:var(--muted)}
+.callout.warm{border-left-color:var(--orange);background:rgba(255,138,61,.07)}
+.callout strong{color:var(--text)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius)}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{text-align:left;padding:15px 18px;border-bottom:1px solid var(--line);font-size:.95rem}
+th{font-family:'Space Grotesk';font-weight:600;color:var(--text);background:rgba(255,255,255,.04);letter-spacing:.02em}
+td{color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td .w{color:var(--cyan);font-weight:600;font-family:'Space Grotesk'}
+.q{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:linear-gradient(180deg,var(--panel),var(--ink-2))}
+.q .qmark{font-family:'Space Grotesk';font-weight:700;font-size:2rem;background:var(--grad-warm);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.q p{color:var(--text);font-size:1.05rem;margin:.5rem 0 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:880px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;background:linear-gradient(180deg,var(--panel),var(--ink-2))}
+.stat .n{font-family:'Space Grotesk';font-weight:700;font-size:2.2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:.9rem;margin-top:4px}
+.flow{position:relative;margin:0;padding:0;list-style:none}
+.flow::before{content:"";position:absolute;left:15px;top:8px;bottom:8px;width:2px;background:var(--line-strong)}
+.flow li{position:relative;padding:0 0 26px 50px}
+.flow li::before{content:"";position:absolute;left:8px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--grad);border:3px solid var(--ink)}
+.flow .wk{font-family:'Space Grotesk';font-weight:600;color:var(--cyan);font-size:.82rem;letter-spacing:.05em}
+.flow h4{margin:.15em 0 .2em}
+.flow p{color:var(--muted);margin:0;font-size:.95rem}
+/* resource list */
+.res{display:grid;gap:16px}
+.resitem{display:grid;grid-template-columns:1fr;gap:6px;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;background:linear-gradient(180deg,var(--panel),var(--ink-2));transition:all .18s ease}
+.resitem:hover{border-color:var(--line-strong)}
+.resitem .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.resitem .ttl{font-family:'Space Grotesk';font-weight:600;font-size:1.12rem;color:var(--text)}
+.resitem .mod-tag{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;font-family:'Space Grotesk'}
+.t-m1{background:rgba(124,92,255,.2);color:#c9bcff}
+.t-m2{background:rgba(43,183,255,.18);color:#9fdcff}
+.t-m3{background:rgba(57,224,198,.18);color:#9bf0e0}
+.resitem .why{color:var(--muted);margin:0}
+.resitem .why b{color:var(--text);font-weight:600}
+.resitem .link{font-size:.9rem;font-family:'Space Grotesk'}
+/* voices */
+.voices{columns:2;column-gap:20px}
+@media(max-width:760px){.voices{columns:1}}
+.voice{break-inside:avoid;margin:0 0 20px;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:12px;padding:20px 22px;background:linear-gradient(180deg,var(--panel),var(--ink-2))}
+.voice p{color:var(--text);font-size:1.02rem;margin:0 0 10px;font-style:italic}
+.voice .tag{color:var(--muted-2);font-size:.82rem;font-family:'Space Grotesk';letter-spacing:.04em}
+.voice.alt{border-left-color:var(--orange)}
+footer{padding:54px 0 40px;background:var(--ink-2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+footer h4{color:var(--text);margin-bottom:14px}
+footer a{display:block;color:var(--muted);font-size:.94rem;margin-bottom:9px}
+footer a:hover{color:var(--text)}
+.credit{margin-top:34px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted-2);font-size:.88rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.credit b{color:var(--muted)}
+.authors{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.author{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:14px 20px;background:rgba(255,255,255,.02)}
+.author .av{width:46px;height:46px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;color:#06101f;flex:none}
+.author .nm{font-family:'Space Grotesk';font-weight:600;color:var(--text)}
+.author .rl{color:var(--muted);font-size:.85rem}
+.center{text-align:center}
+/* interactive punctuated-equilibrium diagram */
+.pe-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-top:32px;align-items:start}
+@media(max-width:920px){.pe-wrap{grid-template-columns:1fr}}
+.pe-figure{padding:22px 18px 16px}
+.pe-hint{color:var(--muted-2);font-size:.82rem;font-family:'Space Grotesk';margin:6px 6px 0;display:flex;align-items:center;gap:8px}
+.pe-hint .blip{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blip 1.6s ease-in-out infinite}
+@keyframes blip{0%,100%{opacity:.4}50%{opacity:1}}
+.pe-marker{cursor:pointer;outline:none}
+.pe-marker text{fill:#06101f;font-family:'Space Grotesk';font-weight:700;font-size:13px;pointer-events:none}
+.pe-marker circle{transition:stroke-width .12s ease,filter .12s ease;stroke:#fff;stroke-width:0}
+.pe-marker:hover circle,.pe-marker:focus circle{stroke-width:2;filter:brightness(1.12)}
+.pe-marker.active circle{stroke-width:3.5}
+.pe-side{display:flex;flex-direction:column;gap:14px}
+.pe-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.pe-tb{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong);background:rgba(255,255,255,.03);color:var(--text);border-radius:100px;padding:7px 13px;font-size:.84rem;font-family:'Space Grotesk';font-weight:500;cursor:pointer;transition:all .15s ease}
+.pe-tb:hover{background:rgba(255,255,255,.09)}
+.pe-tb.active{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.12)}
+.pe-dot{width:11px;height:11px;border-radius:50%;flex:none}
+.pe-detail{border:1px solid var(--line);border-left:4px solid var(--violet);border-radius:14px;padding:22px 24px;background:linear-gradient(180deg,var(--panel),var(--ink-2));min-height:170px;transition:border-color .2s ease}
+.pe-detail .role{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted-2);font-family:'Space Grotesk';font-weight:600}
+.pe-detail h3{margin:8px 0 0;display:flex;align-items:center;gap:11px;font-size:1.18rem}
+.pe-detail p{color:var(--muted);margin:12px 0 0;font-size:1rem}
+.pe-detail .pe-dot{width:15px;height:15px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="dot"></span> Evolution of Society</a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#oneperiod">1-Period</a>
+      <a href="#assessments">Assessments</a>
+      <a href="#resources">Resources</a>
+      <a href="#voices">Voices</a>
+      <a href="#adapt">Adapt It</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span> Open Course Blueprint · Grades 9–12 · One Trimester</span>
+    <h1>From the <span class="grad-text">Big Bang</span> to the next<br>thing the internet does to us.</h1>
+    <p class="lede">A humanities course that hands students the analytical tools to read the technological and economic landscape they live in — and to make disciplined predictions about where it goes next. This kit gives you everything you need to build your own version at your school.</p>
+    <div class="btnrow">
+      <a class="btn btn-primary" href="#curriculum">Explore the curriculum →</a>
+      <a class="btn btn-ghost" href="#adapt">How to adapt it</a>
+    </div>
+  </div>
+</header>
+
+<!-- OVERVIEW -->
+<section class="block" id="overview">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">3</div><div class="l">Core modules</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Trimester / semester</div></div>
+      <div class="stat"><div class="n">9–12</div><div class="l">Grade band</div></div>
+      <div class="stat"><div class="n">∞</div><div class="l">Domains to predict</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap narrow">
+    <div class="kicker">The big idea</div>
+    <h2>Technology changes faster than our intuitions do.</h2>
+    <p class="section-lead">As technology and ideas progress, society evolves to take advantage of new media, economic, and technological landscapes. In a single human lifetime we went from a world where creating and distributing media was an expensive, tightly controlled endeavor to one where anyone can publish a blog, video, or podcast for almost nothing.</p>
+    <p class="section-lead">The central pursuit of this course is an investigation of the economies of scale and advances in technology that now make it good business to give away services for <em>free</em> — and an attempt, by students, to envision and create the direction (or possible directions) society will evolve next.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">What students actually do</div>
+    <h2>Read the landscape. Then predict it.</h2>
+    <div class="grid g3" style="margin-top:34px">
+      <div class="card"><div class="ico">🌌</div><div class="bar"></div><h3>Trace complexity</h3><p>Using the lens of Big History, students chart how the universe — and then human society — crossed thresholds of rising complexity, from the Big Bang to collective learning to the internet.</p></div>
+      <div class="card"><div class="ico">💸</div><div class="bar"></div><h3>Decode the economy of free</h3><p>Students learn core microeconomics — markets, supply and demand, marginal cost — then study how "free" was transformed inside a digital "bits" economy and how the big tech ecosystems exploit it.</p></div>
+      <div class="card"><div class="ico">🔮</div><div class="bar warm"></div><h3>Make a disciplined prediction</h3><p>Each student picks a domain they care about, builds a punctuated-equilibrium model of its past and present, and writes an evidence-based argument for its future.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">The signature tool</div>
+    <h2>The punctuated-equilibrium diagram.</h2>
+    <p class="section-lead">The course's recurring analytical move is a diagram with <strong style="color:var(--text)">time on the x-axis</strong> and <strong style="color:var(--text)">complexity on the y-axis</strong>. Complexity doesn't rise smoothly — it sits on long plateaus broken by sudden jumps, each triggered by a new technology, a falling cost, or a new exchange network. Students use the curve to analyze the past and to structure their predictions of the future.</p>
+    <p class="section-lead" style="font-size:.98rem;margin-top:16px"><strong style="color:var(--text)">Whose idea this is.</strong> The punctuated-equilibrium model of technological change — and this diagram — is the course's own framework, developed by Jonathan Briggs and Matt Delaney. It shares some underlying vocabulary with the <a href="https://www.bighistoryproject.com/home" target="_blank" rel="noopener">Big History Project</a> (Goldilocks conditions, thresholds of complexity, collective learning), but Big History stops short of this synthesis. Turning those ideas into a single predictive tool for reading and forecasting <em>technology</em> is original to this course.</p>
+
+    <div class="pe-wrap">
+      <div class="pe-figure card">
+        <svg viewBox="0 0 600 410" width="100%" role="img" aria-labelledby="peTitle peDesc">
+          <title id="peTitle">Punctuated equilibrium — interactive diagram</title>
+          <desc id="peDesc">A smooth curve of complexity rising over time in steps, with five clickable points: Goldilocks conditions, threshold moment, acceleration, plateau, and new paradigm.</desc>
+          <defs><linearGradient id="gline" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7c5cff"/><stop offset="0.5" stop-color="#2bb7ff"/><stop offset="1" stop-color="#39e0c6"/></linearGradient></defs>
+          <g stroke="rgba(255,255,255,.07)" stroke-width="1">
+            <line x1="60" y1="40" x2="560" y2="40"/><line x1="60" y1="120" x2="560" y2="120"/><line x1="60" y1="200" x2="560" y2="200"/><line x1="60" y1="280" x2="560" y2="280"/>
+          </g>
+          <line x1="60" y1="24" x2="60" y2="360" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+          <line x1="60" y1="360" x2="568" y2="360" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+          <text x="20" y="195" fill="#a7b0c8" font-size="13" font-family="Space Grotesk" transform="rotate(-90 20 195)">Complexity →</text>
+          <text x="300" y="396" fill="#a7b0c8" font-size="13" font-family="Space Grotesk" text-anchor="middle">Time →</text>
+          <path d="M70,338 C120,337 150,335 175,330 C205,323 220,300 245,276 C272,252 300,258 335,258 C376,258 396,254 416,238 C447,212 462,170 496,159 C526,150 546,148 568,130" fill="none" stroke="url(#gline)" stroke-width="5" stroke-linecap="round"/>
+          <g class="pe-marker" data-k="goldilocks" tabindex="0" role="button" aria-label="Point 1: Goldilocks conditions"><circle cx="110" cy="336" r="13" fill="#7c5cff"/><text x="110" y="340" text-anchor="middle">1</text></g>
+          <g class="pe-marker" data-k="threshold" tabindex="0" role="button" aria-label="Point 2: Threshold moment"><circle cx="175" cy="330" r="13" fill="#ff8a3d"/><text x="175" y="334" text-anchor="middle">2</text></g>
+          <g class="pe-marker" data-k="acceleration" tabindex="0" role="button" aria-label="Point 3: Acceleration"><circle cx="235" cy="283" r="13" fill="#2bb7ff"/><text x="235" y="287" text-anchor="middle">3</text></g>
+          <g class="pe-marker" data-k="plateau" tabindex="0" role="button" aria-label="Point 4: Plateau"><circle cx="335" cy="258" r="13" fill="#39e0c6"/><text x="335" y="262" text-anchor="middle">4</text></g>
+          <g class="pe-marker" data-k="newparadigm" tabindex="0" role="button" aria-label="Point 5: New paradigm"><circle cx="520" cy="152" r="13" fill="#ff5d8f"/><text x="520" y="156" text-anchor="middle">5</text></g>
+        </svg>
+        <div class="pe-hint"><span class="blip"></span> Tap a numbered point — or a button — to read the term</div>
+      </div>
+      <div class="pe-side">
+        <div class="pe-tabs" id="peTabs">
+          <button class="pe-tb" data-k="goldilocks"><span class="pe-dot" style="background:#7c5cff"></span>1 · Goldilocks</button>
+          <button class="pe-tb" data-k="threshold"><span class="pe-dot" style="background:#ff8a3d"></span>2 · Threshold</button>
+          <button class="pe-tb" data-k="acceleration"><span class="pe-dot" style="background:#2bb7ff"></span>3 · Acceleration</button>
+          <button class="pe-tb" data-k="plateau"><span class="pe-dot" style="background:#39e0c6"></span>4 · Plateau</button>
+          <button class="pe-tb" data-k="newparadigm"><span class="pe-dot" style="background:#ff5d8f"></span>5 · New paradigm</button>
+        </div>
+        <div class="pe-detail" id="peDetail">
+          <span class="role">Start here</span>
+          <h3>Read the curve, then the cycle</h3>
+          <p>Complexity (vertical) rises over time (horizontal) not smoothly but in steps — long plateaus broken by sudden jumps. Tap any numbered point on the curve, or a button above, to read what drives each phase.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="block" id="philosophy">
+  <div class="wrap narrow">
+    <div class="kicker">Philosophy &amp; goals</div>
+    <h2>Predicting the future is a skill you can practice.</h2>
+    <p>Students grow up inside technological change, but rarely get tools to think about it structurally. This course treats that as a teachable skill. It is deliberately interdisciplinary — part history, part economics, part technology, part media studies — because the forces it studies don't respect subject boundaries.</p>
+    <p>The method is consistent across every unit: <strong style="color:var(--text)">study how change has happened, name the mechanisms that drove it, then use those mechanisms to reason about what happens next.</strong> Problem-solving and flexible thinking are valued over memorization. The goal is not for students to be right about the future — it's for them to build arguments about the future that are honest, evidence-based, and falsifiable.</p>
+    <div class="callout"><strong>The recurring question:</strong> If history helps us avoid repeating the mistakes of the past, what happens when the landscape of the future stops resembling the past at all?</div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Essential questions</div>
+    <h2>The questions students wrestle with all term.</h2>
+    <div class="grid g2" style="margin-top:32px">
+      <div class="q"><div class="qmark">?</div><p>How does the existence of almost-free digital memory in a "bits" economy change economic interaction and the spread of technological tools?</p></div>
+      <div class="q"><div class="qmark">?</div><p>If history helps us avoid past mistakes, what happens when the landscape of the future ceases to match that of the past?</p></div>
+      <div class="q"><div class="qmark">?</div><p>When all facts and figures are instantly retrievable, is there still value in knowing anything — and what will define a "knowledgeable" person in the future?</p></div>
+      <div class="q"><div class="qmark">?</div><p>Would a massive increase in human longevity be sustainable under our current economic system? If not, what would have to change?</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap narrow">
+    <div class="kicker">Learning goals</div>
+    <h2>What students leave with.</h2>
+    <ul class="feat">
+      <li><strong>A model of change.</strong> They can use punctuated equilibrium — thresholds, plateaus, and jumps in complexity — to describe how systems evolve over time.</li>
+      <li><strong>Economic literacy for a digital world.</strong> They understand markets, supply and demand, and marginal cost, and can explain why so much of the digital economy is given away for free.</li>
+      <li><strong>A critical read on big tech.</strong> They can analyze the business models and ecosystems of the dominant technology companies rather than just using their products.</li>
+      <li><strong>Evidence-based argument.</strong> They can synthesize multiple sources, quote and cite them, and build a clear thesis about a contested question.</li>
+      <li><strong>Disciplined speculation.</strong> They can make a prediction about the future that is specific, grounded in trends, and open to being wrong.</li>
+      <li><strong>Collaborative knowledge-building.</strong> They can research in teams, aggregate findings, and teach what they've learned to peers.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="block" id="curriculum">
+  <div class="wrap">
+    <div class="kicker">Curriculum · the three modules</div>
+    <h2>Then to now to next.</h2>
+    <p class="section-lead">Three modules move students from the deep history of complexity, through the economics of the digital present, to a structured forecast of the future. Each carries equal weight in the gradebook.</p>
+    <div class="grid" style="margin-top:34px;gap:22px">
+      <div class="mod">
+        <div class="tab"><span class="mn">Module</span><span class="big">1</span></div>
+        <div class="body">
+          <h3>Then to Now: the Big Bang to the Internet</h3>
+          <p>An overview of history from the start of the universe to our modern, technological society, and an exploration of what the internet actually is — its architecture and how it works.</p>
+          <ul>
+            <li>Big History framing: thresholds of increasing complexity, from cosmology to life to humans.</li>
+            <li>Collective learning and exchange networks as the engine of human acceleration.</li>
+            <li>The "mini-thresholds of life" and the rapid acceleration of recent history.</li>
+            <li>How the internet works, and the open-source community as a case study in non-market exchange.</li>
+          </ul>
+          <div class="chips"><span class="chip">Collective learning</span><span class="chip">Thresholds of complexity</span><span class="chip">Exchange networks</span><span class="chip">Open source</span></div>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="tab"><span class="mn">Module</span><span class="big">2</span></div>
+        <div class="body">
+          <h3>The Economy of Free &amp; Other Disruptive Innovations</h3>
+          <p>An introduction to core microeconomics — perfect markets, supply, demand, marginal cost — and how those concepts behave in technological development, followed by an analysis of how "free" has been transformed inside the digital "bits" economy.</p>
+          <ul>
+            <li>Microeconomic foundations applied to technology and information goods.</li>
+            <li>The four models of "free" (drawn from Chris Anderson's <em>Free</em>): direct cross-subsidies, the three-party market, freemium, and non-monetary economies.</li>
+            <li>Why digital goods trend toward "too cheap to matter," and what demonetization does to industries.</li>
+            <li>Culminating study: the ecosystems of the big five tech companies — Amazon, Apple, Facebook (Meta), Google/Alphabet, and Microsoft.</li>
+          </ul>
+          <div class="chips"><span class="chip">Marginal cost</span><span class="chip">4 models of free</span><span class="chip">Freemium</span><span class="chip">Big 5 ecosystems</span></div>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="tab"><span class="mn">Module</span><span class="big">3</span></div>
+        <div class="body">
+          <h3>Emerging Trends: the Tech Landscape</h3>
+          <p>A discussion of how technological innovation and the societal trends it produces are reshaping daily life — and where their long-term path leads. This module turns the analytical tools loose on the future.</p>
+          <ul>
+            <li>Surveying the current landscape: AI and machine learning, AR/VR, automation and the future of work, longevity, and the manipulation of reality.</li>
+            <li>The accelerating power of technology (Kurzweil) and what exponential change implies.</li>
+            <li>Students select a domain and build a punctuated-equilibrium argument for its future.</li>
+            <li>A final "exchange," where the class shares and pressure-tests one another's predictions.</li>
+          </ul>
+          <div class="chips"><span class="chip">AI &amp; ML</span><span class="chip">AR / VR</span><span class="chip">Future of work</span><span class="chip">Longevity</span><span class="chip">Forecasting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="grid g2" style="gap:44px;align-items:start">
+      <div>
+        <div class="kicker">A sample flow</div>
+        <h2>One trimester, week by week.</h2>
+        <p class="section-lead">A representative pacing for a ~10-week trimester. Treat it as a skeleton — the modules are modular by design, and the adaptation guide shows how to stretch or compress this.</p>
+        <div class="callout warm" style="margin-top:20px"><strong>Rhythm:</strong> most weeks pair a reading-and-post for homework with a collaborative in-class activity (case studies, group research, diagramming), building toward the module's major assessment.</div>
+      </div>
+      <ul class="flow">
+        <li><div class="wk">WEEKS 1–2 · MODULE 1</div><h4>Complexity &amp; thresholds</h4><p>Big History readings and the "mini-thresholds of life." Students post reflections and build their first punctuated-equilibrium diagrams.</p></li>
+        <li><div class="wk">WEEK 3 · MODULE 1</div><h4>Collective learning &amp; the internet</h4><p>Exchange networks, rapid acceleration, and how the internet works. Open source as a case study.</p></li>
+        <li><div class="wk">WEEK 4 · MODULE 1 → 2</div><h4>Synthesis diagram</h4><p>Groups produce the punctuated-equilibrium synthesis presentation — the Module 1 capstone.</p></li>
+        <li><div class="wk">WEEKS 5–6 · MODULE 2</div><h4>Microeconomics &amp; the four models of free</h4><p>Markets, marginal cost, and Anderson's <em>Free</em>. Students post on demonetization and "too cheap to matter."</p></li>
+        <li><div class="wk">WEEK 7 · MODULE 2</div><h4>The Big 5 deep dive</h4><p>Groups each take one tech giant, research its ecosystem, and present. Paired with the "I cut X out of my life" readings.</p></li>
+        <li><div class="wk">WEEK 8 · MODULE 3</div><h4>Scanning the landscape</h4><p>Articles and videos on AI, AR/VR, automation, and longevity. Students choose their prediction domain.</p></li>
+        <li><div class="wk">WEEK 9 · MODULE 3</div><h4>Drafting "The Future of…"</h4><p>Domain &amp; impact statements, outlines, peer editing, and production of the research paper and diagram.</p></li>
+        <li><div class="wk">WEEK 10 · FINAL</div><h4>The Final Exchange</h4><p>Students present predictions, record peers' forecasts in the prediction table, and complete the final synthesis.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Concept toolkit</div>
+    <h2>The vocabulary students build.</h2>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h4 style="color:var(--cyan)">Punctuated equilibrium</h4><p>Long stable plateaus interrupted by rapid jumps. The course's master diagram: complexity (y) over time (x).</p></div>
+      <div class="card"><h4 style="color:var(--cyan)">Collective learning</h4><p>Humanity's unique ability to share and accumulate knowledge across generations — the driver of accelerating complexity.</p></div>
+      <div class="card"><h4 style="color:var(--cyan)">Exchange networks</h4><p>The trade, communication, and information links that connect groups and speed up innovation.</p></div>
+      <div class="card"><h4 style="color:var(--cyan)">Marginal cost</h4><p>The cost of producing one more unit. Near zero for digital goods — the economic root of "free."</p></div>
+      <div class="card"><h4 style="color:var(--cyan)">The four models of free</h4><p>Cross-subsidy, third-party (advertising), freemium, and non-monetary — how giving things away can be good business.</p></div>
+      <div class="card"><h4 style="color:var(--cyan)">Disruptive innovation</h4><p>A new entrant that reshapes a market by changing its economics, not just improving the product.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE PERIOD -->
+<section class="block" id="oneperiod">
+  <div class="wrap">
+    <div class="kicker">Short on time?</div>
+    <h2>The one-class-period version.</h2>
+    <p class="section-lead">You don't need a whole trimester to use the central idea. The punctuated-equilibrium concept works as a single, self-contained lesson — a way to give students a durable model of how complex systems change in one sitting. Below is the exact shape of a mock class period built around it.</p>
+
+    <div class="callout warm" style="margin-top:22px"><strong>With gratitude to the Big History Project.</strong> Some of the vocabulary in this lesson — <em>Goldilocks conditions, thresholds of increasing complexity, collective learning,</em> and the framing of change across the universe and human culture — is adapted from the <a href="https://www.bighistoryproject.com/home" target="_blank" rel="noopener">Big History Project</a>, whose free curriculum we gratefully credit. The punctuated-equilibrium model itself — applying that cycle to technology to actually <em>predict</em> what comes next — is this course's own contribution, and any derivative should carry both acknowledgments.</div>
+
+    <h3 style="margin-top:40px">The session, start to finish</h3>
+    <ul class="flow" style="margin-top:18px">
+      <li><div class="wk">OPEN</div><h4>Warm-up prompt</h4><p>With a partner, identify a time when something — in your life or that you observed — evolved or changed rapidly, becoming more complex. Students share their "paradigm shift" as they introduce themselves.</p></li>
+      <li><div class="wk">FRAME</div><h4>Context setting</h4><p>The teacher frames the day: we're going to build one model — punctuated equilibrium — for how complex systems evolve, and then test it on a real story.</p></li>
+      <li><div class="wk">READ</div><h4>Shared text</h4><p>The class reads a short common text (here, the rapid shift to remote learning during the 2020–21 pandemic) that everyone will analyze through the model.</p></li>
+      <li><div class="wk">DEFINE</div><h4>Definitions</h4><p>Students receive definition cards for the core terms — Goldilocks conditions, threshold moments, acceleration, old &amp; new paradigms / plateaus, feedback loops.</p></li>
+      <li><div class="wk">GROUP</div><h4>Group processing</h4><p>In groups of ~4, each group makes sure everyone understands their assigned definition, then hunts for places in the shared text where that concept appears.</p></li>
+      <li><div class="wk">SHARE</div><h4>Groups share out</h4><p>Each group teaches the rest of the class where they found their concept at work — building the full diagram collectively.</p></li>
+      <li><div class="wk">DISCUSS</div><h4>Discussion</h4><p>The class connects the pieces into one punctuated-equilibrium curve and debates where the next threshold might be.</p></li>
+      <li><div class="wk">CLOSE</div><h4>Conclusion</h4><p>Students make a prediction about what comes next — and note what evidence would tell them whether they were right.</p></li>
+    </ul>
+
+    <h3 style="margin-top:44px">The worked example: how "remote school" evolved</h3>
+    <p class="section-lead">The lesson uses one accessible story to make the abstract model concrete. Remote learning didn't appear overnight in 2020 — it crossed a series of thresholds, each enabled by a new technology, with long plateaus in between.</p>
+    <ul class="flow" style="margin-top:18px">
+      <li><div class="wk">1800s · THRESHOLD</div><h4>Correspondence courses</h4><p>The expanding postal service made "learning at a distance" possible — assignments mailed to professors, feedback mailed back. By the late 1800s many universities had correspondence departments.</p></li>
+      <li><div class="wk">20TH CENTURY · THRESHOLD</div><h4>Radio &amp; television</h4><p>Broadcast brought lectures to scale; coursework was still mailed in. (In many ways, the TED talk is a short-form descendant of this format.)</p></li>
+      <li><div class="wk">1989–2008 · ACCELERATION</div><h4>The internet, LMSs &amp; MOOCs</h4><p>Virtual colleges, then learning-management systems, then online video converge: massively open online courses can enroll thousands at once.</p></li>
+      <li><div class="wk">MARCH 2020 · RAPID JUMP</div><h4>The pandemic forcing function</h4><p>Video-conferencing adoption skyrockets in weeks. The share of people comfortable in an online meeting jumps from very few to most of the connected world — a textbook punctuated jump after a century of plateaus.</p></li>
+    </ul>
+
+    <div class="callout" style="margin-top:26px"><strong>The closing challenge, in the course's own words:</strong> “What will be next? Who knows. I recommend you guess, write it down, and figure out what pieces of information you would have needed to get it right. Almost all predictions of the future are wrong — but some are less wrong than others.”</div>
+  </div>
+</section>
+
+<!-- ASSESSMENTS -->
+<section class="block" id="assessments">
+  <div class="wrap">
+    <div class="kicker">Assessments &amp; grading</div>
+    <h2>Equal weight across the arc.</h2>
+    <p class="section-lead">Each module carries the same weight, with a small final synthesis at the end. This keeps students engaged across the whole term rather than betting everything on a final.</p>
+    <div class="tablewrap" style="margin-top:26px">
+      <table>
+        <thead><tr><th>Component</th><th>Weight</th><th>What it captures</th></tr></thead>
+        <tbody>
+          <tr><td>Module 1 — Big Bang to the Internet</td><td><span class="w">30%</span></td><td>Diagrams, posts, and the synthesis presentation</td></tr>
+          <tr><td>Module 2 — The Economy of Free</td><td><span class="w">30%</span></td><td>Economics work, the Big 5 research &amp; presentation</td></tr>
+          <tr><td>Module 3 — The Tech Landscape</td><td><span class="w">30%</span></td><td>The "Future of…" paper, diagram, and prediction</td></tr>
+          <tr><td>Final Synthesis</td><td><span class="w">10%</span></td><td>Final exchange and reflection across the term</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:22px"><strong>Grade by module or by category.</strong> The original gradebook also tags work by type — <em>Tech-Econ Concepts</em>, <em>Synthesis &amp; Engagement</em>, and <em>Major Assessments</em> — so you can weight either way.</div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Signature projects</div>
+    <h2>The four assessments that define the course.</h2>
+    <div class="grid g2" style="margin-top:32px">
+      <div class="card"><div class="bar"></div><h3>Synthesis Diagram (presentation)</h3><p style="color:var(--muted)">Module 1 capstone. In groups, students build a punctuated-equilibrium diagram with at least three steps — time on the x-axis, complexity on the y — that models either an analogy or a real progression toward complexity. Each member contributes one step, all key terms are labeled and connected to the scenario, and a final slide combines the three steps into one global diagram.</p></div>
+      <div class="card"><div class="bar"></div><h3>"The Future of…" Research Paper</h3><p style="color:var(--muted)">The intellectual heart of Module 3. A short single-spaced paper in which students select 3–4 articles as foundation, analyze each with quotations, in-text citations, and commentary, and make a clear argument for a specific future trend in a domain of their choosing — accompanied by a labeled punctuated-equilibrium diagram capturing the past, present, and predicted future.</p></div>
+      <div class="card"><div class="bar"></div><h3>Big 5 Tech Companies (presentation)</h3><p style="color:var(--muted)">Module 2's culminating group work. Each group takes one of Amazon, Apple, Facebook/Meta, Google/Alphabet, or Microsoft, researches its ecosystem and business model, and presents how it captures value — often in the digital economy through "free." Paired with the firsthand "I cut X out of my life" readings.</p></div>
+      <div class="card"><div class="bar warm"></div><h3>The Final Exchange (prediction table)</h3><p style="color:var(--muted)">The course's closing ritual. Students present their forecasts and record every classmate's topic and prediction in a shared prediction table — turning individual research into a collective map of where the class thinks the world is headed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Assignment bank</div>
+    <h2>The supporting work, by type.</h2>
+    <p class="section-lead">A real inventory of recurring assignments behind the major assessments. Use it as a menu — adopt what fits, retitle the rest.</p>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h4 style="color:var(--cyan)">Tech &amp; Econ concepts</h4><ul style="margin:.4rem 0 0;padding-left:1.05rem;color:var(--muted)"><li>Punctuated-equilibrium diagrams</li><li>Understanding the 4 models of free</li><li>Feedback-loops concept check</li><li>Big 5 company decks &amp; group worksheets</li><li>The accelerating power of technology — watch &amp; post</li></ul></div>
+      <div class="card"><h4 style="color:var(--cyan)">Synthesis &amp; engagement</h4><ul style="margin:.4rem 0 0;padding-left:1.05rem;color:var(--muted)"><li>Partnered class notes (rotating)</li><li>Domain &amp; impact statements</li><li>Group meetings: discuss, research, aggregate</li><li>Outline &amp; draft diagram for the paper</li><li>Peer editing &amp; paper review</li><li>Prep for the Final Exchange</li></ul></div>
+      <div class="card"><h4 style="color:var(--cyan)">Readings &amp; viewings</h4><ul style="margin:.4rem 0 0;padding-left:1.05rem;color:var(--muted)"><li>Collective learning (multi-part) — read &amp; post</li><li>Complexity &amp; thresholds</li><li><em>Free</em> by Chris Anderson (in sections)</li><li>"Too cheap to matter" / demonetization</li><li>"I cut the Big Five out of my life" series</li><li>AR/VR videos · "Attack on Reality"</li></ul></div>
+    </div>
+    <div class="callout" style="margin-top:24px"><strong>Naming convention:</strong> the original course tags assignments by mode so students know what's expected at a glance — <b>CW</b> (classwork), <b>HW</b> (homework), and <b>MA</b> (major assessment), often with a bracketed action like <em>[READ-POST]</em>, <em>[WATCH-DIAGRAM]</em>, or <em>[Group Work]</em>. A small move that makes a syllabus instantly legible.</div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="block" id="resources">
+  <div class="wrap">
+    <div class="kicker">Resource library</div>
+    <h2>The materials, with the why.</h2>
+    <p class="section-lead">Publicly available resources that anchor the course, each with a short note on what it is and how it earns its place. Swap in fresher examples as the landscape moves — the frameworks are what's durable.</p>
+
+    <div class="res" style="margin-top:30px">
+
+      <div class="resitem">
+        <div class="top"><span class="mod-tag t-m2">Module 2 · anchor text</span><span class="ttl">Free: The Future of a Radical Price — Chris Anderson</span></div>
+        <p class="why"><b>What it is:</b> the book that gives the course its spine — the four models of "free," "too cheap to matter," and the economics of abundance in a digital world. <b>How it's useful:</b> read in sections across Module 2, it gives students a shared vocabulary for why so much of the internet is given away, and a framework they then apply to real companies. Anderson released it for free, which makes the book its own case study.</p>
+        <a class="link" href="https://archive.org/details/FreeTheFutureOfARadicalPrice" target="_blank" rel="noopener">Full text on the Internet Archive →</a>
+      </div>
+
+      <div class="resitem">
+        <div class="top"><span class="mod-tag t-m2">Module 2 · case study</span><span class="ttl">"Goodbye Big Five" — the dependence experiment (Gizmodo)</span></div>
+        <p class="why"><b>What it is:</b> a firsthand journalism series in which a reporter tries to cut each of the big five tech companies — and then all of them — out of daily life. <b>How it's useful:</b> it turns abstract talk about "ecosystems" into something visceral, exposing how deeply the giants are woven into infrastructure (payments, hosting, logins). Pairs directly with the Big 5 group presentations.</p>
+        <a class="link" href="https://gizmodo.com/i-tried-to-block-amazon-from-my-life-it-was-impossible-1830565336" target="_blank" rel="noopener">Amazon</a> ·
+        <a class="link" href="https://gizmodo.com/i-cut-facebook-out-of-my-life-surprisingly-i-missed-i-1830565456" target="_blank" rel="noopener">Facebook</a> ·
+        <a class="link" href="https://gizmodo.com/i-cut-google-out-of-my-life-it-screwed-up-everything-1830565500" target="_blank" rel="noopener">Google</a> ·
+        <a class="link" href="https://gizmodo.com/i-cut-microsoft-out-of-my-life-or-so-i-thought-1830863898" target="_blank" rel="noopener">Microsoft</a> ·
+        <a class="link" href="https://gizmodo.com/i-cut-the-big-five-tech-giants-from-my-life-it-was-hel-1831304194" target="_blank" rel="noopener">All Five</a>
+      </div>
+
+      <div class="resitem">
+        <div class="top"><span class="mod-tag t-m3">Module 3 · viewing</span><span class="ttl">"The Accelerating Power of Technology" — Ray Kurzweil (TED)</span></div>
+        <p class="why"><b>What it is:</b> a talk on exponential technological change — paradigm shifts, Moore's law, and the acceleration of acceleration. <b>How it's useful:</b> students harvest Kurzweil's vocabulary and map it directly onto the course's own threshold-and-complexity model, then critique which of his predictions have held up. A bridge from the historical lens of Module 1 to the forward-looking work of Module 3.</p>
+        <a class="link" href="https://www.youtube.com/watch?v=IfbOyw3CT6A" target="_blank" rel="noopener">Watch on YouTube →</a>
+      </div>
+
+      <div class="resitem">
+        <div class="top"><span class="mod-tag t-m3">Module 3 · reading</span><span class="ttl">"Attack on Reality" — synthetic media &amp; manufactured faces</span></div>
+        <p class="why"><b>What it is:</b> reporting on how AI can generate photorealistic faces and media of people and events that never existed (e.g., GAN-generated faces). <b>How it's useful:</b> it grounds one of the course's sharpest essential questions — what happens to "the truth" and collective narratives when anyone can manufacture convincing reality? A frequent springboard for student prediction papers.</p>
+        <a class="link" href="https://www.theverge.com/2017/10/30/16569402/ai-generate-fake-faces-celebs-nvidia-gan" target="_blank" rel="noopener">The Verge: AI-generated faces →</a>
+      </div>
+
+      <div class="resitem">
+        <div class="top"><span class="mod-tag t-m3">Module 3 · supplement</span><span class="ttl">The uncanny valley — examples &amp; primer</span></div>
+        <p class="why"><b>What it is:</b> a primer on the "uncanny valley," the unease we feel as synthetic humans get almost-but-not-quite real. <b>How it's useful:</b> it gives students a concept and concrete examples for discussing AR/VR, avatars, and synthetic media — why believability matters, and where it breaks down.</p>
+        <a class="link" href="https://www.strangerdimensions.com/2013/11/25/10-creepy-examples-uncanny-valley/" target="_blank" rel="noopener">10 examples of the uncanny valley →</a>
+      </div>
+
+      <div class="resitem">
+        <div class="top"><span class="mod-tag t-m1">Module 1 · framework</span><span class="ttl">Big History — collective learning &amp; thresholds of complexity</span></div>
+        <p class="why"><b>What it is:</b> the interdisciplinary "Big History" framing — the universe and humanity crossing successive thresholds of increasing complexity, with collective learning as humanity's accelerant. <b>How it's useful:</b> it supplies vocabulary and conceptual scaffolding for Module 1 and the one-period mini-lesson. <b>Acknowledgment:</b> the Big History Project's free curriculum shaped this course's vocabulary and is gratefully credited — though the punctuated-equilibrium model applied to technology is the course's own synthesis. Adopters should carry both credits.</p>
+        <a class="link" href="https://www.bighistoryproject.com/home" target="_blank" rel="noopener">Big History Project →</a>
+      </div>
+
+    </div>
+
+    <div class="callout warm" style="margin-top:26px"><strong>A candid note on freshness.</strong> This course tracks a moving target, so its examples date faster than most. Treat updating them as a yearly ritual — and a great class activity. Most in need of a refresh: the "big five" lineup, the state of AI (the generative-AI wave post-dates much of the original reading list), and any "free" services that have since added paywalls. A durable test: if a swap still lets a student build a past→present→future argument, it fits the course.</div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="block" id="voices">
+  <div class="wrap">
+    <div class="kicker">Voices from the course</div>
+    <h2>The kind of thinking it produces.</h2>
+    <p class="section-lead">Anonymized, lightly trimmed excerpts from student discussion posts and prediction statements across past offerings. Names, sections, and other identifying details have been removed. They're here to show the texture of the thinking — disciplined speculation, concept transfer, and economic reasoning — that the course is designed to surface.</p>
+
+    <div class="voices" style="margin-top:32px">
+      <div class="voice"><p>“Advertisers will know more about you in a few decades than you know yourself — and will use that knowledge to acquire vast sums of money.”</p><span class="tag">— Prediction · the future of online advertising</span></div>
+      <div class="voice alt"><p>“He predicted solar panels will become the sole provider of energy — lighter and more efficient. I think something of that sort comes to fruition; I just don't know when.”</p><span class="tag">— Reflection · holding a prediction and its uncertainty together</span></div>
+      <div class="voice"><p>“I'm looking at the demand for corporate digital security, and how it will have to change and adapt as the future unfolds.”</p><span class="tag">— Domain &amp; impact statement</span></div>
+      <div class="voice"><p>“People trust other people far more than brands now; advertising goes wherever the attention goes.”</p><span class="tag">— Synthesis · shifting media economics</span></div>
+      <div class="voice alt"><p>“Non-petrol commuter vehicles will hold the majority of the commuter-car market within a few decades — the cost curves are already bending.”</p><span class="tag">— Prediction · transportation</span></div>
+      <div class="voice"><p>“I want to trace experiential technology in education — and its impact on hands-on learning in the classroom.”</p><span class="tag">— Domain &amp; impact statement</span></div>
+      <div class="voice alt"><p>“His terms map onto ours: exponential growth, paradigm shifts, acceleration. It's the same threshold idea, just pointed at the future instead of the past.”</p><span class="tag">— Reflection · transferring a concept across units</span></div>
+      <div class="voice"><p>“Smart farming, automated mining, investing apps that put the stock market in everyone's pocket — different domains, same pattern of a sudden jump in what's possible.”</p><span class="tag">— Final exchange · spotting the shared shape across forecasts</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADAPT -->
+<section class="block" id="adapt">
+  <div class="wrap">
+    <div class="kicker">Build your own version</div>
+    <h2>Six planning moves.</h2>
+    <ol class="steps" style="margin-top:30px">
+      <li><h3>Keep the spine: then → now → next</h3><p>Whatever you change, preserve the three-part arc — deep history of complexity, the economics of the present, a forecast of the future — and the punctuated-equilibrium diagram as the connective tool. That structure is what makes the course coherent.</p></li>
+      <li><h3>Anchor each module to one idea and one artifact</h3><p>Module 1 → complexity, ending in the synthesis diagram. Module 2 → the economics of free, ending in the Big 5 study. Module 3 → the landscape, ending in the "Future of…" paper. Pick the single deliverable that proves the module, then build backward to it.</p></li>
+      <li><h3>Refresh the examples for this year</h3><p>Swap dated readings and companies for current ones. The framework is durable; the examples are disposable. Updating them is a yearly ritual, not a one-time fix.</p></li>
+      <li><h3>Tune the reading load to your students</h3><p>The original pairs a short read-and-post for homework with a hands-on activity in class. Scale the volume up or down, and lean on videos and annotated excerpts where a full text is too heavy.</p></li>
+      <li><h3>Set up a shared workspace and clear naming</h3><p>Create a class notebook or shared drive for readings, partnered notes, and final papers. Adopt the <b>CW / HW / MA</b> + bracketed-action naming so students always know the mode and the task at a glance.</p></li>
+      <li><h3>End with an exchange</h3><p>Close on the Final Exchange: students present forecasts and record each other's predictions in a shared table. It converts individual work into a collective artifact and gives the term a memorable ending.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Updating dated content</div>
+    <h2>What to swap in.</h2>
+    <div class="tablewrap" style="margin-top:24px">
+      <table>
+        <thead><tr><th>Original element</th><th>Why refresh</th><th>Swap-in direction</th></tr></thead>
+        <tbody>
+          <tr><td>The "big five" tech companies</td><td>Rankings, names, and business models shift</td><td>Re-pick the dominant platforms for your year; consider adding a chip-maker, an AI lab, or a non-US giant</td></tr>
+          <tr><td>State of AI / "future of work" readings</td><td>Predate the generative-AI wave</td><td>Add current pieces on LLMs, agents, and labor-market effects; revisit the longevity question with new data</td></tr>
+          <tr><td>AR/VR video set</td><td>The hardware and hype cycle moved</td><td>Update with current mixed-reality, wearables, or ambient-computing demos</td></tr>
+          <tr><td><em>Free</em> examples</td><td>Some "free" services added paywalls / subscriptions</td><td>Keep the four models; refresh with current freemium, ad-funded, and subscription cases</td></tr>
+          <tr><td>"I cut X out of my life" series</td><td>Specific articles age</td><td>Use the latest digital-dependence reporting, or have students attempt their own week-long experiment</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Alternate formats</div>
+    <h2>Fit it to your calendar &amp; department.</h2>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><div class="bar"></div><h3>Trimester (as-is)</h3><p>~10 weeks, three modules of equal weight, one major deliverable each, closing in the Final Exchange.</p></div>
+      <div class="card"><div class="bar"></div><h3>Full semester</h3><p>Add depth: a second economics unit, a primary-source history strand, or individual research checkpoints across Module 3. Add a midterm synthesis.</p></div>
+      <div class="card"><div class="bar warm"></div><h3>Single unit (4–5 weeks)</h3><p>Run Module 2 alone as an "Economics of Free" unit, or Module 3 as a "Forecasting the Future" capstone in an existing course.</p></div>
+      <div class="card"><div class="bar"></div><h3>Humanities / social studies</h3><p>Emphasize the Big History framing, media studies, and the argumentative paper. Lighten the microeconomics.</p></div>
+      <div class="card"><div class="bar"></div><h3>Economics elective</h3><p>Deepen markets, marginal cost, and platform economics; use the tech landscape as applied case studies.</p></div>
+      <div class="card"><div class="bar warm"></div><h3>CS / interdisciplinary</h3><p>Expand "how the internet works" and open source; pair the forecasting paper with a build or prototype.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap narrow">
+    <div class="kicker">Origin &amp; attribution</div>
+    <h2>Built and taught for over a decade.</h2>
+    <p class="section-lead">Evolution of Society: Economics &amp; Technology was co-developed and co-taught at Eastside Preparatory School (Kirkland, WA), where it ran for many years and evolved each time it was offered. This kit distills that accumulated practice into something other educators can adopt.</p>
+    <div class="authors">
+      <div class="author"><div class="av">MD</div><div><div class="nm">Matt Delaney</div><div class="rl">Co-developer · Eastside Preparatory School</div></div></div>
+      <div class="author"><div class="av">JB</div><div><div class="nm">Jonathan Briggs</div><div class="rl">Co-developer · Eastside Preparatory School</div></div></div>
+    </div>
+    <div class="callout" style="margin-top:24px"><strong>Acknowledgment.</strong> This course's framework draws gratefully on the <a href="https://www.bighistoryproject.com/home" target="_blank" rel="noopener">Big History Project</a>, whose free curriculum supplied the core vocabulary of thresholds, complexity, and collective learning.</div>
+    <div class="callout" style="margin-top:16px"><strong>License &amp; sharing.</strong> © 2026 Eastside Preparatory School. Created by Jonathan Briggs and Matt Delaney. Original course materials are licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">Creative Commons Attribution 4.0 (CC BY 4.0)</a>, except where otherwise noted. Linked readings, videos, and other third-party materials remain the property of their creators and are not covered by this license.<br><br><strong>Please attribute as:</strong> “Evolution of Society by Jonathan Briggs and Matt Delaney, Eastside Preparatory School, CC BY 4.0.” If you build a derivative, we also ask that you acknowledge the Big History Project — and we'd love to hear how it evolves at your school.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:14px"><span class="dot"></span> Evolution of Society</a>
+        <p style="color:var(--muted);max-width:340px">An open course adoption kit for teaching technology, economics, and the future of society.</p>
+      </div>
+      <div><h4>The course</h4><a href="#philosophy">Philosophy &amp; goals</a><a href="#curriculum">Curriculum</a><a href="#oneperiod">One-period version</a><a href="#assessments">Assessments</a><a href="#resources">Resources</a></div>
+      <div><h4>Make it yours</h4><a href="#voices">Voices from the course</a><a href="#adapt">Adaptation guide</a><a href="#resources">Updating dated content</a></div>
+    </div>
+    <div class="credit">
+      <span>Co-developed by <b>Jonathan Briggs</b> &amp; <b>Matt Delaney</b> · Eastside Preparatory School</span>
+      <span>© 2026 Eastside Preparatory School · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener" style="display:inline;margin:0">CC BY 4.0</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PE={
+    goldilocks:{c:'#7c5cff',role:'1 · The setup',t:'Goldilocks conditions',b:'The “just right” conditions for a jump in complexity: diverse ingredients co-exist under the right conditions, fall into a precise arrangement, and begin to show new emergent properties — the first sign of movement toward greater complexity.'},
+    threshold:{c:'#ff8a3d',role:'2 · The turning point',t:'Threshold moment',b:'A turning point where genuinely more complex things appear, with new emergent properties. Some thresholds happen at a specific instant; others unfold gradually, with only an approximate turning point.'},
+    acceleration:{c:'#2bb7ff',role:'3 · The climb',t:'Acceleration · positive feedback loops',b:'An increase in the rate of change — in both the Universe and human culture — fueled by surpluses, positive feedback loops, and exchange networks. Each advance makes the next one arrive faster, bending the curve upward.'},
+    plateau:{c:'#39e0c6',role:'4 · The old normal',t:'Plateau · negative feedback loops',b:'A stretch of relative stability — the way people think about and operate with an existing technology (the old paradigm). Negative feedback loops hold the system steady until the next threshold arrives.'},
+    newparadigm:{c:'#ff5d8f',role:'5 · The new normal',t:'New paradigm / plateau',b:'After the jump, a new plateau forms: a new normal — the way people now think about and operate with the new technology — until fresh Goldilocks conditions begin the cycle again, one level higher.'}
+  };
+  var detail=document.getElementById('peDetail');
+  var markers=document.querySelectorAll('.pe-marker');
+  var btns=document.querySelectorAll('.pe-tb');
+  if(!detail) return;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function render(k){
+    var d=PE[k]; if(!d) return;
+    detail.style.borderLeftColor=d.c;
+    detail.innerHTML='<span class="role">'+esc(d.role)+'</span><h3><span class="pe-dot" style="background:'+d.c+'"></span>'+esc(d.t)+'</h3><p>'+esc(d.b)+'</p>';
+    markers.forEach(function(m){m.classList.toggle('active',m.getAttribute('data-k')===k);});
+    btns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-k')===k);});
+  }
+  function wire(el){
+    el.addEventListener('click',function(){render(el.getAttribute('data-k'));});
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();render(el.getAttribute('data-k'));}});
+  }
+  markers.forEach(wire); btns.forEach(wire);
+})();
+</script>
+</body>
+</html>
